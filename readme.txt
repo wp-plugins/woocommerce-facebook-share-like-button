@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=terry@te
 Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
-Requires at least: 2.7 or higher
+Requires at least: 2.7
 Tested up to: 3.3.2
 Stable tag: 1.0.0
 Version: 1.0.0
@@ -30,8 +30,8 @@ NOTE: This plugin requires the WooCommerce Extension.
 
 == Screenshots ==
 
-/tags/1.0.0/screenshot-1.png
-/tags/1.0.0/screenshot-2.png
+1. Screenshot Admin Product Enabled Option 
+2. Screenshot Product Detail Page
 
 == Frequently Asked Questions ==
 
