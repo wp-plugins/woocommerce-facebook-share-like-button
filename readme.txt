@@ -5,7 +5,7 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
-Tested up to: 3.3.2
+Tested up to: 3.4.1
 Stable tag: 1.0.1
 Version: 1.0.1
 License: GPLv2 or later
@@ -25,13 +25,14 @@ NOTE: This plugin requires the WooCommerce Extension.
 
 1. Upload the entire *woocommerce-terrytsang-fbsharelike* folder to the */wp-content/plugins/* directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. To update your facebook app id for the plugin, go to plugin folder 'assets/js/' and open the file 'tsang_fbsharelike_jquery.js'. Update the default value for **fb_app_id** and save
+3. If you want to use your own facebook app id for the plugin, go to Admin left sidebar menu 'FbShareLike' and update the option. Or else, just use default option.
 4. That's it. You're ready to go and cheers!
 
 == Screenshots ==
 
 1. Screenshot Admin Product Enabled Option 
 2. Screenshot Product Detail Page
+3. Screenshot Admin FbShareLike Option Page
 
 == Frequently Asked Questions ==
 
@@ -41,7 +42,7 @@ No, you can straight away use the plugin as the plugin included the script.
 
 = If i want to use my own facebook app id, what should i do? =
 
-To update your facebook app id for the plugin, go to plugin folder 'assets/js/' and open the file 'tsang_fbsharelike_jquery.js'. Update the default value for **fb_app_id** and save the file
+To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike' and update option there.
 
 == Upgrade Notice ==
 
@@ -49,9 +50,16 @@ coming soon...
 
 == Changelog ==
 
+= 1.1.0 =
+
+* Add sidebar admin menu 'FbShareLike' for option update for own facebook app id
+
+= 1.0.1 =
+
+* Bug fixed: Class 'TSANG_WooCommerce_FbShareLike_Button' not found
+
 = 1.0.0 =
+
 * Initial Release
 * Basic Facebook Share Like Button option for woocommerce products
 
-= 1.0.1 =
-* Fixed Class 'TSANG_WooCommerce_FbShareLike_Button' not found

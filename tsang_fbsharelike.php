@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com
 Description: Add a Facebook Like and Share button to your product pages
-Version: 1.0.1
+Version: 1.1.0
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -33,9 +33,15 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 	class TSANG_WooCommerce_FbShareLike_Button{
 		var $id_name = 'tsang_fbsharelike_tab';
 		var $id = 'tsang_fbsharelike';
+		var $plugin_url;
+		var $options;
+		var $key;
 		
 		function __construct()
 		{
+			$this->plugin_url = trailingslashit(plugins_url(null,__FILE__));
+			$this->key = 'tsang_fbsharelike';
+			
 			//It will be called only if the product has it enabled, then enqueue our script here
 			add_action( 'wp_enqueue_scripts', array( &$this, 'tsang_fbsharelike_scripts' ) );
 			
@@ -49,8 +55,14 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			//Display on product page for the facebook share and like button
 			add_action( 'woocommerce_single_product_summary', array(&$this, 'tsang_fbsharelike_button' ), 100 );
 			
+			$this->options = $this->get_options();
+			
+			//Display Admin Menu for Facebook App ID
+			add_action( 'admin_menu', array( &$this, 'add_menu_items' ) );
+			
 			//Add javascript after <body> tag
-			add_action( 'init', array( &$this, 'add_afterbody_scripts' ) );
+			//add_action( 'init', array( &$this, 'add_afterbody_scripts' ) );
+			add_action( 'wp_footer', array( &$this, 'add_afterbody_scripts' ) );
 		}
 		
 		//start to include plugin scripts if the product is enabled for facebook share and like option
@@ -132,14 +144,109 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			endif;
 		}
 		
+		function add_menu_items() {
+			$image = $this->plugin_url . '/assets/images/icon.png';
+			add_menu_page( __( 'FbShareLike', 'facebook-sharelike' ), __( 'FbShareLike', 'facebook-sharelike' ), 'manage_options', 'fbshare_settings', array(
+				&$this,
+				'options_page'
+			), $image);
+		}
+		
 		//start to include any script after <body> tag
 		function add_afterbody_scripts()
 		{
-			$script_js_file = plugin_dir_url( __FILE__ ) . 'assets/js/tsang_fbsharelike_jquery.js';
+			//$script_js_file = plugin_dir_url( __FILE__ ) . 'assets/js/tsang_fbsharelike_jquery.js';
 			
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('body-init-script', $script_js_file, 'jquery', '1.0');
+			//wp_enqueue_script('jquery');
+			//wp_enqueue_script('body-init-script', $script_js_file, 'jquery', '1.0');
+			
+			$custom_facebook_app_id = $this->options['custom_facebook_app_id'];
+			if ( ! $custom_facebook_app_id ) 
+				$custom_facebook_app_id = '216944597824';
+				
+			echo '<div id="fb-root"></div> 
+        	<script>(function(d, s, id) { 
+	            var js, fjs = d.getElementsByTagName(s)[0]; 
+	            if (d.getElementById(id)) return; 
+	            js = d.createElement(s); js.id = id; 
+	            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId='.$custom_facebook_app_id.'"; 
+	            fjs.parentNode.insertBefore(js, fjs); 
+        	}(document, \'script\', \'facebook-jssdk\'));</script>';
 		}
+		
+		function options_page() 
+		{ 
+			// If form was submitted
+			if ( isset( $_POST['submitted'] ) ) 
+			{			
+				check_admin_referer( 'facebook-sharelike' );
+				
+				$this->options['custom_facebook_app_id'] = ! isset( $_POST['custom_facebook_app_id'] ) ? '216944597824' : $_POST['custom_facebook_app_id'];
+				
+				update_option( $this->key, $this->options );
+				
+				// Show message
+				echo '<div id="message" class="updated fade"><p>' . __( 'Facebook ShareLike options saved.', 'facebook-sharelike' ) . '</p></div>';
+			} 
+			
+			$custom_facebook_app_id = $this->options['custom_facebook_app_id'];
+			if ( ! $custom_facebook_app_id ) 
+				$custom_facebook_app_id = '216944597824';
+			
+			global $wp_version;
+		
+			$imgpath = $this->plugin_url.'/assets/images/';
+			$actionurl = $_SERVER['REQUEST_URI'];
+			$nonce = wp_create_nonce( 'facebook-sharelike' );
+			
+			$this->options = $this->get_options();
+					
+			// Configuration Page
+					
+			?>
+			<div class="wrap" >
+				<h2><?php _e( 'WooCommerce Facebook ShareLike', 'facebook-sharelike' );  ?></h2>
+				<div id="poststuff" style="margin-top:20px;">
+					<div id="mainblock" style="width:700px">
+						<div>
+							<form action="<?php echo $actionurl; ?>" method="post">
+								<input type="hidden" name="submitted" value="1" /> 
+								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo $nonce; ?>" />
+								<h2><?php _e( 'Options', 'facebook-sharelike' ); ?></h2>
+								<div>
+									<label for="custom_facebook_app_id">Your Facebook App ID</label>
+									<input id="custom_facebook_app_id" name="custom_facebook_app_id" value="<?php echo $custom_facebook_app_id; ?>" size="20"/>
+								</div>
+								<div class="submit"><input type="submit" name="Submit" value="<?php _e( 'Update options', 'facebook-sharelike' ); ?>" /></div>
+							</form>
+						</div>
+					 </div>
+				</div>
+			</div>
+			<h4 class="author"><?php _e( 'A WooCommerce plugin by <a href="http://www.terrytsang.com">Terry Tsang', 'facebook-sharelike' ); ?></a></h4>
+			<?php
+		}
+		
+		// Handle our options
+		function get_options() {
+			$options = array(
+				'custom_facebook_app_id' => '216944597824',
+			);
+			$saved = get_option( $this->key );
+			
+			if ( ! empty( $saved ) ) {
+				foreach ( $saved as $key => $option ) {
+					$options[$key] = $option;
+				}
+			}
+				  
+			if ( $saved != $options ) {
+				update_option( $this->key, $options );
+			}
+			
+			return $options;
+		}
+	
 	}
 }
 
