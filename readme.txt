@@ -25,7 +25,7 @@ NOTE: This plugin requires the WooCommerce Extension.
 
 1. Upload the entire *woocommerce-terrytsang-fbsharelike* folder to the */wp-content/plugins/* directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. If you want to use your own facebook app id for the plugin, go to Admin left sidebar menu 'FbShareLike' and update the option. Or else, just use default option.
+3. If you want to use your own facebook app id for the plugin or position of the button, go to Admin left sidebar menu 'FbShareLike' and update the option. Or else, just use default option.
 4. That's it. You're ready to go and cheers!
 
 == Screenshots ==
@@ -43,7 +43,10 @@ No, you can straight away use the plugin as the plugin included the script.
 = If i want to use my own facebook app id, what should i do? =
 
 To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike' and update option there.
-If you want to change the default button position[bottom of product summary] to position after product title, just checked the option 'show button after product title'.
+
+= If i want to change the default button position[bottom of product summary] to position after product title, what should i do? =
+
+You can check the option 'show button after product title' at 'FbShareLike' section.
 
 == Upgrade Notice ==
 
