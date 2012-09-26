@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 1.0.1
-Version: 1.0.1
+Stable tag: 1.2.0
+Version: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,12 +43,18 @@ No, you can straight away use the plugin as the plugin included the script.
 = If i want to use my own facebook app id, what should i do? =
 
 To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike' and update option there.
+If you want to change the default button position[bottom of product summary] to position after product title, just checked the option 'show button after product title'.
 
 == Upgrade Notice ==
 
 coming soon...
 
 == Changelog ==
+
+= 1.2.0 =
+
+* Add sidebar admin menu 'FbShareLike' for option show button after product title
+* Fixed missing assets/js/tsang_fbsharelike.js
 
 = 1.1.0 =
 
