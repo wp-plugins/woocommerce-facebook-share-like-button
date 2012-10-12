@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 1.2.0
-Version: 1.2.0
+Stable tag: 1.2.1
+Version: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,13 +46,22 @@ To update your facebook app id for the plugin, go to Admin left sidebar, menu 'F
 
 = If i want to change the default button position[bottom of product summary] to position after product title, what should i do? =
 
-You can check the option 'show button after product title' at 'FbShareLike' section.
+You can check the option 'Show button after product title' at 'FbShareLike' section.
+
+= If i only want to show facebook like button, not the share button. =
+
+You can check the option 'Show only like button' at 'FbShareLike' section.
 
 == Upgrade Notice ==
 
 coming soon...
 
 == Changelog ==
+
+= 1.2.1 =
+
+* Add sidebar admin menu 'FbShareLike' for option show only like button
+* Update plugin banner photo
 
 = 1.2.0 =
 

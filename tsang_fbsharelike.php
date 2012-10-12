@@ -127,10 +127,17 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				$enabled_option = 'yes'; //default new products or unset value to true
 			endif;
 			
+			$this->options = $this->get_options();
+			$option_show_only_like = $this->options['custom_show_only_like'];
+			$data_send_option = true;
+			
+			if( $option_show_only_like == 'yes' )
+				$data_send_option = false;
+				
 			if( $enabled_option == 'yes' ):
 			?>
 				<br />
-				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+				<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 			<?php
 			endif;
 		}
@@ -169,6 +176,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 				$this->options['custom_facebook_app_id'] = ! isset( $_POST['custom_facebook_app_id'] ) ? '216944597824' : $_POST['custom_facebook_app_id'];
 				$this->options['custom_show_after_title'] = ! isset( $_POST['custom_show_after_title'] ) ? '' : $_POST['custom_show_after_title'];
+				$this->options['custom_show_only_like'] = ! isset( $_POST['custom_show_only_like'] ) ? '' : $_POST['custom_show_only_like'];
 				
 				update_option( $this->key, $this->options );
 				
@@ -178,12 +186,17 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			$custom_facebook_app_id = $this->options['custom_facebook_app_id'];
 			$custom_show_after_title = $this->options['custom_show_after_title'];
+			$custom_show_only_like = $this->options['custom_show_only_like'];
 			if ( ! $custom_facebook_app_id ) 
 				$custom_facebook_app_id = '216944597824';
 			
 			$checked_value = '';
 			if($custom_show_after_title == 'yes')
 				$checked_value = 'checked="checked"';
+				
+			$checked_value2 = '';
+			if($custom_show_only_like == 'yes')
+				$checked_value2 = 'checked="checked"';
 			
 			global $wp_version;
 		
@@ -211,8 +224,13 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 								</div>
 								<div>&nbsp;</div>
 								<div>
-									<label for="custom_facebook_app_id">Show button after product title</label>
+									<label for="custom_show_after_title">Show button after product title</label>
 									<input class="checkbox" name="custom_show_after_title" id="custom_show_after_title" value="yes" <?php echo $checked_value; ?> type="checkbox">
+								</div>
+								<div>&nbsp;</div>
+								<div>
+									<label for="custom_show_only_like">Show only like button</label>
+									<input class="checkbox" name="custom_show_only_like" id="custom_show_only_like" value="yes" <?php echo $checked_value2; ?> type="checkbox">
 								</div>
 								<div class="submit"><input type="submit" name="Submit" value="<?php _e( 'Update options', 'facebook-sharelike' ); ?>" /></div>
 							</form>
