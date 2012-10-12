@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: Terry Tsang
+Contributors: terrytsang
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=terry@terrytsang.com&item_name=Donation+for+TerryTsang+Wordpress+WebDev
 Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/
