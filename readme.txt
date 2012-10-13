@@ -15,7 +15,7 @@ A WooCommerce plugin that implements facebook share and like button on product p
 
 == Description ==
 
-This is a WooCommerce plugin that implements facebook share and like button on your product page. After you activated the plugin, the default option is 'Enabled' for all the existing products.
+This is a WooCommerce plugin that implements facebook share and like button on the product page. After you activated the plugin, the default option is 'Enabled' for all the existing products.
 
 In WooCommerce Product panel, there will be a new tab called 'Facebook ShareLike' where you can uncheck or check 'Enabled' option to show the button or not.
 
@@ -48,7 +48,7 @@ To update your facebook app id for the plugin, go to Admin left sidebar, menu 'F
 
 You can check the option 'Show button after product title' at 'FbShareLike' section.
 
-= If i only want to show facebook like button, not the share button. =
+= If i only want to show facebook like button on product page, not the share button. =
 
 You can check the option 'Show only like button' at 'FbShareLike' section.
 
