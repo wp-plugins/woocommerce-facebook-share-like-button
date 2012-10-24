@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 1.2.1
-Version: 1.2.1
+Stable tag: 1.2.2
+Version: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ You can check the option 'Show only like button' at 'FbShareLike' section.
 coming soon...
 
 == Changelog ==
+
+= 1.2.2 =
+
+* Add <link rel="image_src" href="[post thumbnail image]" /> to Fix Wrong Thumbnail Issue For FaceBook Like and Send
 
 = 1.2.1 =
 
