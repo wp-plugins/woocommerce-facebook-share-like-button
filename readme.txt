@@ -18,13 +18,13 @@ A WooCommerce plugin that implements facebook share and like button on product p
 This is a WooCommerce plugin that implements facebook share and like button on the product page with flexible options. After you activated the plugin, the default option is 'Enabled' for all the existing products.
 
 Under WooCommerce sidebar panel, there will be a new child menu link called 'FBShareLike Settings' where you can:
-1) Replace default app id value with yours one, or else just leave it.
-2) Set width
-3) Enable 'Show button below product title' option
-4) Enable 'Show Like button only' option
-5) Choose 'Verb to display' for LIKE button - default(like) or recommend
-6) Choose 'Color Scheme' - default(light) or dark button
-7) Select 'Language Setting' for the language for button. (77 languages supported)
+1. Replace default app id value with yours one, or else just leave it.
+2. Set width
+3. Enable 'Show button below product title' option
+4. Enable 'Show Like button only' option
+5. Choose 'Verb to display' for LIKE button - default(like) or recommend
+6. Choose 'Color Scheme' - default(light) or dark button
+7. Select 'Language Setting' for the language for button. (77 languages supported)
 
 
 NOTE: This plugin requires the WooCommerce Extension.
