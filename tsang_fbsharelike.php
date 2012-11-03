@@ -4,12 +4,12 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com
 Description: Add a Facebook Like and Share button to your product pages
-Version: 1.2.2
+Version: 2.0.0
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
 
-/*  Copyright 2012 Terry Tsang (email: terry at terrytsang.com)
+/*  Copyright 2012 Terry Tsang (email: terrytsang811@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,6 +41,12 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		{
 			$this->plugin_url = trailingslashit(plugins_url(null,__FILE__));
 			$this->key = 'tsang_fbsharelike';
+			$this->language = array();
+			
+			$this->like_verbs = array('like' => 'Like', 'recommend' => 'Recommend');
+			$this->color_schemes = array('default' => 'Default', 'dark' => 'Dark');
+				
+			$this->includes();
 			
 			//Add product write panel
 			add_action( 'woocommerce_product_write_panels', array(&$this, 'tsang_fbsharelike_main') );
@@ -60,22 +66,39 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 			$this->options = $this->get_options();
 			
-			//Display Admin Menu for Facebook App ID
+			//Display setting menu under woocommerce
 			add_action( 'admin_menu', array( &$this, 'add_menu_items' ) );
 			
 			//Add javascript after <body> tag
 			//add_action( 'init', array( &$this, 'add_afterbody_scripts' ) );
 			add_action( 'wp_footer', array( &$this, 'add_afterbody_scripts' ) );
 			
-			//add image_src link for facebook thumbnail generation
+			//Add image_src link for facebook thumbnail generation
 			add_action( 'wp_head', array( &$this, 'add_head_imagesrc' ) );
+		}
+		
+		function includes()
+		{
+			include_once( 'includes/languages.php');
 		}
 		
 		function add_head_imagesrc()
 		{
 		?>
 			<link rel="image_src" href="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); } ?>" />
-			<link rel="image_src" href="logo.png" />
+			<?php if (is_single()) { ?>  
+			<meta property="og:url" content="<?php the_permalink() ?>"/>  
+			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
+			<meta property="og:description" content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>" />  
+			<meta property="og:type" content="article" />  
+			<meta property="og:image" content="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); }?>" />  
+			  
+			<!-- if page is others -->  
+			<?php } else { ?>  
+			<meta property="og:site_name" content="<?php bloginfo('name'); ?>" />  
+			<meta property="og:description" content="<?php bloginfo('description'); ?>" />  
+			<meta property="og:type" content="website" />  
+			<meta property="og:image" content="logo.jpg" /> <?php } ?> 
 		<?php
 		}
 		
@@ -140,40 +163,65 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			$this->options = $this->get_options();
 			$option_show_only_like = $this->options['custom_show_only_like'];
-			$data_send_option = true;
+			$option_facebook_width = $this->options['custom_facebook_width'];
+			$option_like_verb 		= $this->options['custom_like_verb'];
+			$option_color_scheme 	= $this->options['custom_color_scheme'];
+			
+			$data_send_option 		= true;
+			$like_verb_default 		= '';
+			$color_scheme_default	= '';
 			
 			if( $option_show_only_like == 'yes' )
 				$data_send_option = false;
+			
+			if( $option_facebook_width == '' )
+				$option_facebook_width = '450';
+				
+			if( $option_like_verb == 'recommend' )
+				$like_verb_default =  ' data-action="recommend"';
+				
+			if( $option_color_scheme == 'dark' )
+				$color_scheme_default = '  data-colorscheme="dark"';
 				
 			if( $enabled_option == 'yes' ):
 			?>
-				<br />
-				<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+				<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div>
 			<?php
 			endif;
 		}
 		
 		function add_menu_items() {
-			$image = $this->plugin_url . '/assets/images/icon.png';
-			add_menu_page( __( 'FbShareLike', 'facebook-sharelike' ), __( 'FbShareLike', 'facebook-sharelike' ), 'manage_options', 'fbshare_settings', array(
+			$wc_page = 'woocommerce';
+			$comparable_settings_page = add_submenu_page( $wc_page , __( 'FbShareLike Setting', 'facebook-sharelike' ), __( 'FbShareLike Setting', 'facebook-sharelike' ), 'manage_options', 'fbsharelike-settings', array(
 				&$this,
 				'options_page'
-			), $image);
+			));
+
+			//$image = $this->plugin_url . '/assets/images/icon.png';
+			/*add_menu_page( __( 'FbShareLike', 'facebook-sharelike' ), __( 'FbShareLike', 'facebook-sharelike' ), 'manage_options', 'fbshare_settings', array(
+				&$this,
+				'options_page'
+			), $image);*/
 		}
 		
 		//start to include any script after <body> tag
 		function add_afterbody_scripts()
 		{
 			$custom_facebook_app_id = $this->options['custom_facebook_app_id'];
+			$option_language_code = $this->options['custom_language_code'];
+			
 			if ( ! $custom_facebook_app_id ) 
 				$custom_facebook_app_id = '216944597824';
+			
+			if ( ! $option_language_code )
+				$option_language_code = 'en_GB';
 				
 			echo '<div id="fb-root"></div> 
         	<script>(function(d, s, id) { 
 	            var js, fjs = d.getElementsByTagName(s)[0]; 
 	            if (d.getElementById(id)) return; 
 	            js = d.createElement(s); js.id = id; 
-	            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId='.$custom_facebook_app_id.'"; 
+	            js.src = "//connect.facebook.net/'.$option_language_code.'/all.js#xfbml=1&appId='.$custom_facebook_app_id.'"; 
 	            fjs.parentNode.insertBefore(js, fjs); 
         	}(document, \'script\', \'facebook-jssdk\'));</script>';
 		}
@@ -186,8 +234,12 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				check_admin_referer( 'facebook-sharelike' );
 				
 				$this->options['custom_facebook_app_id'] = ! isset( $_POST['custom_facebook_app_id'] ) ? '216944597824' : $_POST['custom_facebook_app_id'];
+				$this->options['custom_facebook_width'] = ! isset( $_POST['custom_facebook_width'] ) ? '450' : $_POST['custom_facebook_width'];
 				$this->options['custom_show_after_title'] = ! isset( $_POST['custom_show_after_title'] ) ? '' : $_POST['custom_show_after_title'];
 				$this->options['custom_show_only_like'] = ! isset( $_POST['custom_show_only_like'] ) ? '' : $_POST['custom_show_only_like'];
+				$this->options['custom_like_verb'] = ! isset( $_POST['custom_like_verb'] ) ? 'like' : $_POST['custom_like_verb'];
+				$this->options['custom_color_scheme'] = ! isset( $_POST['custom_color_scheme'] ) ? 'default' : $_POST['custom_color_scheme'];
+				$this->options['custom_language_code'] = ! isset( $_POST['custom_language_code'] ) ? 'en_GB' : $_POST['custom_language_code'];
 				
 				update_option( $this->key, $this->options );
 				
@@ -195,9 +247,14 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				echo '<div id="message" class="updated fade"><p>' . __( 'Facebook ShareLike options saved.', 'facebook-sharelike' ) . '</p></div>';
 			} 
 			
-			$custom_facebook_app_id = $this->options['custom_facebook_app_id'];
-			$custom_show_after_title = $this->options['custom_show_after_title'];
-			$custom_show_only_like = $this->options['custom_show_only_like'];
+			$custom_facebook_app_id	 	= $this->options['custom_facebook_app_id'];
+			$custom_facebook_width 		= $this->options['custom_facebook_width'];
+			$custom_show_after_title 	= $this->options['custom_show_after_title'];
+			$custom_show_only_like 		= $this->options['custom_show_only_like'];
+			$custom_like_verb 			= $this->options['custom_like_verb'];
+			$custom_color_scheme 		= $this->options['custom_color_scheme'];
+			$custom_language_code 		= $this->options['custom_language_code'];
+			
 			if ( ! $custom_facebook_app_id ) 
 				$custom_facebook_app_id = '216944597824';
 			
@@ -208,6 +265,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$checked_value2 = '';
 			if($custom_show_only_like == 'yes')
 				$checked_value2 = 'checked="checked"';
+				
+			if($custom_facebook_width == '')
+				$custom_facebook_width = '450';
 			
 			global $wp_version;
 		
@@ -220,36 +280,115 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			// Configuration Page
 					
 			?>
-			<div class="wrap" >
-				<h2><?php _e( 'WooCommerce Facebook ShareLike', 'facebook-sharelike' );  ?></h2>
-				<div id="poststuff" style="margin-top:20px;">
-					<div id="mainblock" style="width:700px">
-						<div>
-							<form action="<?php echo $actionurl; ?>" method="post">
-								<input type="hidden" name="submitted" value="1" /> 
-								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo $nonce; ?>" />
-								<h2><?php _e( 'Options', 'facebook-sharelike' ); ?></h2>
-								<div>
-									<label for="custom_facebook_app_id">Your Facebook App ID</label>
-									<input id="custom_facebook_app_id" name="custom_facebook_app_id" value="<?php echo $custom_facebook_app_id; ?>" size="20"/>
-								</div>
-								<div>&nbsp;</div>
-								<div>
-									<label for="custom_show_after_title">Show button after product title</label>
-									<input class="checkbox" name="custom_show_after_title" id="custom_show_after_title" value="yes" <?php echo $checked_value; ?> type="checkbox">
-								</div>
-								<div>&nbsp;</div>
-								<div>
-									<label for="custom_show_only_like">Show only like button</label>
-									<input class="checkbox" name="custom_show_only_like" id="custom_show_only_like" value="yes" <?php echo $checked_value2; ?> type="checkbox">
-								</div>
-								<div class="submit"><input type="submit" name="Submit" value="<?php _e( 'Update options', 'facebook-sharelike' ); ?>" /></div>
-							</form>
-						</div>
-					 </div>
-				</div>
-			</div>
-			<h4 class="author"><?php _e( 'A WooCommerce plugin by <a href="http://www.terrytsang.com">Terry Tsang', 'facebook-sharelike' ); ?></a></h4>
+			<div id="icon-options-general" class="icon32"></div>
+			<h3><?php _e( 'FBShareLike Options', 'facebook-sharelike' ); ?></h3>
+			
+			
+			<table width="90%" cellspacing="2">
+			<tr>
+				<td width="70%">
+					<form action="<?php echo $actionurl; ?>" method="post">
+					<table class="widefat fixed" cellspacing="0">
+							<thead>
+								<th width="30%">Option</th>
+								<th>Setting</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Your Facebook App ID<br /><span style="color:#ccc;">(leave it as default value if you do not have any facebook app for the site)</span></td>
+									<td><input id="custom_facebook_app_id" name="custom_facebook_app_id" value="<?php echo $custom_facebook_app_id; ?>" size="20"/></td>
+								</tr>
+								<tr>
+									<td>Width</td>
+									<td><input id="custom_facebook_width" name="custom_facebook_width" value="<?php echo $custom_facebook_width; ?>" size="20"/></td>
+								</tr>
+								<tr>
+									<td>Show button below product title</td>
+									<td><input class="checkbox" name="custom_show_after_title" id="custom_show_after_title" value="yes" <?php echo $checked_value; ?> type="checkbox"></td>
+								</tr>
+								<tr>
+									<td>Show Like button only</td>
+									<td><input class="checkbox" name="custom_show_only_like" id="custom_show_only_like" value="yes" <?php echo $checked_value2; ?> type="checkbox"></td>
+								</tr>
+								<tr>
+									<td>Verb to display</td>
+									<td>
+										<select name="custom_like_verb">
+										<?php foreach($this->like_verbs as $verb_option => $verb_name): ?>
+											<?php if($verb_option == $custom_like_verb): ?>
+												<option selected="selected" value="<?php echo $verb_option; ?>"><?php echo $verb_name; ?></option>
+											<?php else: ?>
+												<option value="<?php echo $verb_option; ?>"><?php echo $verb_name; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Color Scheme</td>
+									<td>
+										<select name="custom_color_scheme">
+										<?php foreach($this->color_schemes as $scheme_option => $scheme_name): ?>
+											<?php if($scheme_option == $custom_color_scheme): ?>
+												<option selected="selected" value="<?php echo $scheme_option; ?>"><?php echo $scheme_name; ?></option>
+											<?php else: ?>
+												<option value="<?php echo $scheme_option; ?>"><?php echo $scheme_name; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Language Setting</td>
+									<td>
+										<select name="custom_language_code">
+										<?php foreach($this->language as $lang_code => $lang_name): ?>
+											<?php if($lang_code == $custom_language_code): ?>
+												<option selected="selected" value="<?php echo $lang_code; ?>"><?php echo $lang_name; ?></option>
+											<?php else: ?>
+												<option value="<?php echo $lang_code; ?>"><?php echo $lang_name; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan=2">
+										<input class="button-primary" type="submit" name="Save" value="<?php _e('Save Options'); ?>" id="submitbutton" />
+										<input type="hidden" name="submitted" value="1" /> 
+										<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo $nonce; ?>" />
+									</td>
+								</tr>
+							
+							</tbody>
+					</table>
+					</form>
+				
+				</td>
+				
+				<td width="30%" style="background:#ececec;padding:10px 5px;">
+					<p><b>WooCommerce Facebook Share Like Button</b> is a free woocommerce plugin developed by <a href="http://www.terrytsang.com" target="_blank" title="Terry Tsang - a php and symfony developer">Terry Tsang</a>. I have spent a lot of time to improve and writing this.</p>
+					
+					<h3>Spreading the Word</h3>
+
+					<ul style="list-style:dash">If you find this plugin helpful, you can:	
+						<li>- Write and review about it in your blog</li>
+						<li>- Rate it on <a href="http://wordpress.org/extend/plugins/woocommerce-facebook-share-like-button/" target="_blank">wordpress plugin page</a></li>
+						<li>- Or make a donation</li>
+					</ul>
+					
+					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LJWSJDBBLNK7W" target="_blank"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="" /></a>
+
+
+					<h3>Thank you for your support!</h3>
+				</td>
+				
+			</tr>
+			</table>
+			
+			
+			<br />
+			
 			<?php
 		}
 		

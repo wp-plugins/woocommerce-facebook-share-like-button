@@ -6,18 +6,26 @@ Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 1.2.2
-Version: 1.2.2
+Stable tag: 2.0.0
+Version: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A WooCommerce plugin that implements facebook share and like button on product page.
+A WooCommerce plugin that implements facebook share and like button on product page with flexible options.
 
 == Description ==
 
-This is a WooCommerce plugin that implements facebook share and like button on the product page. After you activated the plugin, the default option is 'Enabled' for all the existing products.
+This is a WooCommerce plugin that implements facebook share and like button on the product page with flexible options. After you activated the plugin, the default option is 'Enabled' for all the existing products.
 
-In WooCommerce Product panel, there will be a new tab called 'Facebook ShareLike' where you can uncheck or check 'Enabled' option to show the button or not.
+Under WooCommerce sidebar panel, there will be a new child menu link called 'FBShareLike Settings' where you can:
+1) Replace default app id value with yours one, or else just leave it.
+2) Set width
+3) Enable 'Show button below product title' option
+4) Enable 'Show Like button only' option
+5) Choose 'Verb to display' for LIKE button - default(like) or recommend
+6) Choose 'Color Scheme' - default(light) or dark button
+7) Select 'Language Setting' for the language for button. (77 languages supported)
+
 
 NOTE: This plugin requires the WooCommerce Extension.
 
@@ -25,14 +33,16 @@ NOTE: This plugin requires the WooCommerce Extension.
 
 1. Upload the entire *woocommerce-terrytsang-fbsharelike* folder to the */wp-content/plugins/* directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. If you want to use your own facebook app id for the plugin or position of the button, go to Admin left sidebar menu 'FbShareLike' and update the option. Or else, just use default option.
+3. A new menu link appeared under WooCommerce sidebar panel, you can click that to update options.
 4. That's it. You're ready to go and cheers!
 
 == Screenshots ==
 
 1. Screenshot Admin Product Enabled Option 
-2. Screenshot Product Detail Page
-3. Screenshot Admin FbShareLike Option Page
+2. Screenshot Frontend Product Detail Page
+3. Screenshot Admin FbShareLike Settings Option Page
+4. Screenshot Frontend - Chinese and Show After Product Title
+5. Screenshot Frontend - French and Show Like Button Only
 
 == Frequently Asked Questions ==
 
@@ -40,23 +50,42 @@ NOTE: This plugin requires the WooCommerce Extension.
 
 No, you can straight away use the plugin as the plugin included the script.
 
-= If i want to use my own facebook app id, what should i do? =
+= If i want to use my own facebook application id, what should i do? =
 
-To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike' and update option there.
+To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike Settings' under 'WoocCommerce' and update option there.
 
 = If i want to change the default button position[bottom of product summary] to position after product title, what should i do? =
 
-You can check the option 'Show button after product title' at 'FbShareLike' section.
+You can check the option 'Show button after product title' at 'FbShareLike Settings' section.
 
 = If i only want to show facebook like button on product page, not the share button. =
 
-You can check the option 'Show only like button' at 'FbShareLike' section.
+You can check the option 'Show only like button' at 'FbShareLike Settings' section.
+
+= If i only want to show dark color button on product page, not the light color button. =
+
+You can select 'Dark' at 'Color Scheme' option under 'FbShareLike Settings' section.
+
+= If i only want to show different language for the button text? =
+
+You can select at 'Language Settings' option under 'FbShareLike Settings' section. (77 Languages Supported Now)
 
 == Upgrade Notice ==
 
 coming soon...
 
 == Changelog ==
+
+= 2.0.0 =
+
+* Change menu 'FbShareLike' sidebar to 'FBShareLike Settings' link under 'WooCommerce' sidebar panel
+* Add more options for the setting page (width, languages, verb to display and color scheme)
+* Add OG <Meta> tags for facebook graph apps
+
+
+= 1.2.3 =
+
+* Fixed bugs
 
 = 1.2.2 =
 
