@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 2.0.0
-Version: 2.0.0
+Stable tag: 2.0.1
+Version: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,40 +85,14 @@ coming soon...
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Fixed missing variables
+* Update Product Description (200 chars limit) for OG <Meta> description
+
+
 = 2.0.0 =
 
 * Change menu 'FbShareLike' sidebar to 'FBShareLike Settings' link under 'WooCommerce' sidebar panel
 * Add more options for the setting page (width, languages, verb to display and color scheme)
 * Add OG <Meta> tags for facebook graph apps
-
-
-= 1.2.3 =
-
-* Fixed bugs
-
-= 1.2.2 =
-
-* Add <link rel="image_src" href="[post thumbnail image]" /> to Fix Wrong Thumbnail Issue For FaceBook Like and Send
-
-= 1.2.1 =
-
-* Add sidebar admin menu 'FbShareLike' for option show only like button
-* Update plugin banner photo
-
-= 1.2.0 =
-
-* Add sidebar admin menu 'FbShareLike' for option show button after product title
-* Fixed missing assets/js/tsang_fbsharelike.js
-
-= 1.1.0 =
-
-* Add sidebar admin menu 'FbShareLike' for option update for own facebook app id
-
-= 1.0.1 =
-
-* Bug fixed: Class 'TSANG_WooCommerce_FbShareLike_Button' not found
-
-= 1.0.0 =
-
-* Initial Release
-* Basic Facebook Share Like Button option for woocommerce products
