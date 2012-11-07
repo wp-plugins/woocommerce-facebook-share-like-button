@@ -88,9 +88,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		
 		function add_head_imagesrc()
 		{
-		$post_object = get_post( $post->ID );
-		$post_content = substr($post_object->post_content, 0, 200).'...';
-		//$post_content = strip_tags(get_the_excerpt($post->ID));
+		//$post_object = get_post( $post->ID );
+		//$post_content = strip_tags(substr($post_object->post_content, 0, 200)).'...';
+		$post_content = strip_tags(get_the_excerpt($post->ID));
 		?>
 			<link rel="image_src" href="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); } ?>" />
 			<?php if (is_single()) { ?>  
