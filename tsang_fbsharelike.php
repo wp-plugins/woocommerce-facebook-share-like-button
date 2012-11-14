@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.2
+Version: 2.0.3
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -88,9 +88,13 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		
 		function add_head_imagesrc()
 		{
+		global $post;
 		//$post_object = get_post( $post->ID );
 		//$post_content = strip_tags(substr($post_object->post_content, 0, 200)).'...';
-		$post_content = strip_tags(get_the_excerpt($post->ID));
+		if($post)
+			$post_content = strip_tags(get_the_excerpt($post->ID));
+		else
+			$post_content = bloginfo('description');
 		?>
 			<link rel="image_src" href="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); } ?>" />
 			<?php if (is_single()) { ?>  
@@ -301,7 +305,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 							</thead>
 							<tbody>
 								<tr>
-									<td>Your Facebook App ID<br /><span style="color:#ccc;">(leave it as default value if you do not have any facebook app for the site)</span></td>
+									<td>Your Facebook App ID<br /><span style="color:#ccc;">(leave it as default value if you do not have any facebook application id)</span></td>
 									<td><input id="custom_facebook_app_id" name="custom_facebook_app_id" value="<?php echo $custom_facebook_app_id; ?>" size="20"/></td>
 								</tr>
 								<tr>
@@ -375,6 +379,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				<td width="30%" style="background:#ececec;padding:10px 5px;">
 					<p><b>WooCommerce Facebook Share Like Button</b> is a free woocommerce plugin developed by <a href="http://www.terrytsang.com" target="_blank" title="Terry Tsang - a php and symfony developer">Terry Tsang</a>. I have spent a lot of time to improve and writing this.</p>
 					
+					<h3>Get Pro Extensions</h3>
+					
+					<p>Vist <a href="http://www.terrytsang.com/shop" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your ecommerce platform.</p>
+					
 					<h3>Spreading the Word</h3>
 
 					<ul style="list-style:dash">If you find this plugin helpful, you can:	
@@ -384,7 +392,6 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 					</ul>
 					
 					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LJWSJDBBLNK7W" target="_blank"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="" /></a>
-
 
 					<h3>Thank you for your support!</h3>
 				</td>

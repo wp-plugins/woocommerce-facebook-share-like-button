@@ -2,12 +2,12 @@
 Contributors: terrytsang
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=terry@terrytsang.com&item_name=Donation+for+TerryTsang+Wordpress+WebDev
 Plugin Name: WooCommerce Facebook Share Like Button
-Plugin URI:  http://terrytsang.com/
+Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 2.0.2
-Version: 2.0.2
+Stable tag: 2.0.3
+Version: 2.0.3s
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,7 +56,7 @@ No, you can straight away use the plugin as the plugin included the script.
 
 = If i want to use my own facebook application id, what should i do? =
 
-To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike Settings' under 'WoocCommerce' and update option there.
+To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike Settings' under 'WoocCommerce' and update option there. (NOTE: This is not your facebook page URL)
 
 
 = If i want to change the default button position[bottom of product summary] to position after product title, what should i do? =
@@ -84,6 +84,12 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.3 =
+
+* Fixed undefined $post
+* Updated facebook application id help description
+
 
 = 2.0.2 =
 
