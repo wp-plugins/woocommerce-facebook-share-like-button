@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.3
+Version: 2.0.4
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -94,22 +94,16 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		if($post)
 			$post_content = strip_tags(get_the_excerpt($post->ID));
 		else
-			$post_content = bloginfo('description');
+			$post_content = strip_tags(bloginfo('description'));
 		?>
 			<link rel="image_src" href="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); } ?>" />
 			<?php if (is_single()) { ?>  
 			<meta property="og:url" content="<?php the_permalink() ?>"/>  
 			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
 			<meta property="og:description" content="<?php echo $post_content; ?>" />  
-			<meta property="og:type" content="article" />  
+			<meta property="og:type" content="product" />  
 			<meta property="og:image" content="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); }?>" />  
-			  
-			<!-- if page is others -->  
-			<?php } else { ?>  
-			<meta property="og:site_name" content="<?php bloginfo('name'); ?>" />  
-			<meta property="og:description" content="<?php bloginfo('description'); ?>" />  
-			<meta property="og:type" content="website" />  
-			<meta property="og:image" content="logo.jpg" /> <?php } ?> 
+			<?php } ?> 
 		<?php
 		}
 		
