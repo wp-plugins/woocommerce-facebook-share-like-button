@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.4
+Version: 2.0.5
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -49,7 +49,8 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			$this->like_verbs = array('like' => 'Like', 'recommend' => 'Recommend');
 			$this->color_schemes = array('default' => 'Default', 'dark' => 'Dark');
-				
+			$this->button_aligns = array('left' => 'Left', 'right' => 'Right');
+			
 			$this->includes();
 			
 			//Add product write panel
@@ -89,18 +90,13 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		function add_head_imagesrc()
 		{
 		global $post;
-		//$post_object = get_post( $post->ID );
-		//$post_content = strip_tags(substr($post_object->post_content, 0, 200)).'...';
-		if($post)
-			$post_content = strip_tags(get_the_excerpt($post->ID));
-		else
-			$post_content = strip_tags(bloginfo('description'));
+
 		?>
 			<link rel="image_src" href="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); } ?>" />
 			<?php if (is_single()) { ?>  
 			<meta property="og:url" content="<?php the_permalink() ?>"/>  
 			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
-			<meta property="og:description" content="<?php echo $post_content; ?>" />  
+			<meta property="og:description" content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>" />  
 			<meta property="og:type" content="product" />  
 			<meta property="og:image" content="<?php if (function_exists('wp_get_attachment_thumb_url')) {echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); }?>" />  
 			<?php } ?> 
@@ -170,10 +166,12 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$option_facebook_width = $this->options['custom_facebook_width'];
 			$option_like_verb 		= $this->options['custom_like_verb'];
 			$option_color_scheme 	= $this->options['custom_color_scheme'];
+			$option_button_align 	= $this->options['custom_button_align'];
 			
 			$data_send_option 		= true;
 			$like_verb_default 		= '';
 			$color_scheme_default	= '';
+			$button_align_default	= 'left';
 			
 			if( $option_show_only_like == 'yes' )
 				$data_send_option = false;
@@ -186,10 +184,16 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 			if( $option_color_scheme == 'dark' )
 				$color_scheme_default = '  data-colorscheme="dark"';
+			
+			if( $option_button_align == 'right' )
+				$button_align_default = 'right';
 				
 			if( $enabled_option == 'yes' ):
 			?>
-				<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div>
+				<div style="display:block;float:<?php echo $button_align_default; ?>;">
+					<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div>
+				</div>
+				<br clear="all" />
 			<?php
 			endif;
 		}
@@ -244,6 +248,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				$this->options['custom_like_verb'] = ! isset( $_POST['custom_like_verb'] ) ? 'like' : $_POST['custom_like_verb'];
 				$this->options['custom_color_scheme'] = ! isset( $_POST['custom_color_scheme'] ) ? 'default' : $_POST['custom_color_scheme'];
 				$this->options['custom_language_code'] = ! isset( $_POST['custom_language_code'] ) ? 'en_GB' : $_POST['custom_language_code'];
+				$this->options['custom_button_align'] = ! isset( $_POST['custom_button_align'] ) ? 'left' : $_POST['custom_button_align'];
 				
 				update_option( $this->key, $this->options );
 				
@@ -258,6 +263,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$custom_like_verb 			= $this->options['custom_like_verb'];
 			$custom_color_scheme 		= $this->options['custom_color_scheme'];
 			$custom_language_code 		= $this->options['custom_language_code'];
+			$custom_button_align 		= $this->options['custom_button_align'];
 			
 			if ( ! $custom_facebook_app_id ) 
 				$custom_facebook_app_id = '216944597824';
@@ -272,6 +278,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 			if($custom_facebook_width == '')
 				$custom_facebook_width = '450';
+			
+			if($custom_button_align == '')
+				$custom_button_align = 'left';
 			
 			global $wp_version;
 		
@@ -305,6 +314,20 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 								<tr>
 									<td>Width</td>
 									<td><input id="custom_facebook_width" name="custom_facebook_width" value="<?php echo $custom_facebook_width; ?>" size="20"/></td>
+								</tr>
+								<tr>
+									<td>Button Alignment</td>
+									<td>
+										<select name="custom_button_align">
+										<?php foreach($this->button_aligns as $align_option => $button_align): ?>
+											<?php if($align_option == $custom_button_align): ?>
+												<option selected="selected" value="<?php echo $align_option; ?>"><?php echo $button_align; ?></option>
+											<?php else: ?>
+												<option value="<?php echo $align_option; ?>"><?php echo $button_align; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td>Show button below product title</td>

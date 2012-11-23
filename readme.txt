@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.1
-Stable tag: 2.0.4
-Version: 2.0.4
+Stable tag: 2.0.5
+Version: 2.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ The list of options for the section above:
 
 *   Replace default app id value with yours one, or else just leave it
 *   Set width
+*   Choose 'Button Alignment' - default(left) or right
 *   Enable "Show button below product title" option
 *   Enable 'Show Like button only' option
 *   Choose 'Verb to display' for LIKE button - default(like) or recommend
@@ -44,8 +45,8 @@ NOTE: This plugin requires the WooCommerce Extension.
 1. Screenshot Admin Product Enabled Option 
 2. Screenshot Frontend Product Detail Page
 3. Screenshot Admin FbShareLike Settings Option Page
-4. Screenshot Frontend - Chinese and Show After Product Title
-5. Screenshot Frontend - French and Show Like Button Only
+4. Screenshot Frontend - Chinese + Show After Product Title
+5. Screenshot Frontend - French + Show Like Button Only + Button Align Right
 
 == Frequently Asked Questions ==
 
@@ -57,6 +58,11 @@ No, you can straight away use the plugin as the plugin included the script.
 = If i want to use my own facebook application id, what should i do? =
 
 To update your facebook app id for the plugin, go to Admin left sidebar, menu 'FbShareLike Settings' under 'WoocCommerce' and update option there. (NOTE: This is not your facebook page URL)
+
+
+= If i want to align button to right? =
+
+You can select the option 'Right' at 'Button Alignment' section.
 
 
 = If i want to change the default button position[bottom of product summary] to position after product title, what should i do? =
@@ -84,6 +90,11 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.5 =
+
+* Fixed : remove additional bloginfo description output on top page
+* NEW : add new option 'Button Alignment' where you can choose to align left or right
 
 = 2.0.4 =
 
