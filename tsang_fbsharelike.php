@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.5
+Version: 2.0.6
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -40,6 +40,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		var $language;
 		var $like_verbs;
 		var $color_schemes;
+		var $get_pro_image;
 		
 		function __construct()
 		{
@@ -74,6 +75,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			//Display setting menu under woocommerce
 			add_action( 'admin_menu', array( &$this, 'add_menu_items' ) );
 			
+			//load stylesheet
+			add_action( 'wp_enqueue_scripts', array(&$this, 'custom_plugin_stylesheet') );
+			
 			//Add javascript after <body> tag
 			//add_action( 'init', array( &$this, 'add_afterbody_scripts' ) );
 			add_action( 'wp_footer', array( &$this, 'add_afterbody_scripts' ) );
@@ -85,6 +89,14 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		function includes()
 		{
 			include_once( 'includes/languages.php');
+		}
+		
+		/**
+		 * Load stylesheet for the page
+		 */
+		function custom_plugin_stylesheet() {
+			wp_register_style( 'fbshare-stylesheet', plugins_url('/css/fbshare.css', __FILE__) );
+			wp_enqueue_style( 'fbshare-stylesheet' );
 		}
 		
 		function add_head_imagesrc()
@@ -190,10 +202,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 			if( $enabled_option == 'yes' ):
 			?>
-				<div style="display:block;float:<?php echo $button_align_default; ?>;">
-					<div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div>
+				<div class="social-button-container" style="display:block;float:<?php echo $button_align_default; ?>;">
+					<div class="social-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div></div>
 				</div>
-				<br clear="all" />
 			<?php
 			endif;
 		}
@@ -393,10 +404,15 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				
 				</td>
 				
-				<td width="30%" style="background:#ececec;padding:10px 5px;">
+				<td width="30%" style="background:#ececec;padding:10px 5px;" valign="top">
 					<p><b>WooCommerce Facebook Share Like Button</b> is a free woocommerce plugin developed by <a href="http://www.terrytsang.com" target="_blank" title="Terry Tsang - a php and symfony developer">Terry Tsang</a>. I have spent a lot of time to improve and writing this.</p>
 					
-					<h3>Get Pro Extensions</h3>
+					<?php
+						$get_pro_image = $this->plugin_url . '/assets/images/get-social-buttons-pro.png';
+					?>
+					<div><a href="http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/" target="_blank" title="WooCommerce Social Buttons PRO"><img src="<?php echo $get_pro_image; ?>" border="0" /></a></div>
+					
+					<h3>Get More Extensions</h3>
 					
 					<p>Vist <a href="http://www.terrytsang.com/shop" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your ecommerce platform.</p>
 					

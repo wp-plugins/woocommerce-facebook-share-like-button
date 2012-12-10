@@ -5,9 +5,9 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
-Tested up to: 3.4.1
-Stable tag: 2.0.5
-Version: 2.0.5
+Tested up to: 3.4.2
+Stable tag: 2.0.6
+Version: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,12 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.6 =
+
+* Fixed : remove additional <br> below the button
+* Updated : add "overflow: hidden;" css for social-button-container 
+* NEW : add new link for "Get Social Buttons Pro" with more social media
 
 = 2.0.5 =
 
