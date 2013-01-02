@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
 Tested up to: 3.4.2
-Stable tag: 2.0.6
-Version: 2.0.6
+Stable tag: 2.0.7
+Version: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,16 +28,20 @@ The list of options for the section above:
 *   Enable 'Show Like button only' option
 *   Choose 'Verb to display' for LIKE button - default(like) or recommend
 *   Choose 'Color Scheme' - default(light) or dark button
+*   Choose 'Font' - default or custom font (Arial, Lucida Grande, Segeo UI, Tahoma, Trebuchet MS, Verdana)
 *   Select 'Language Setting' for the language for button. (77 languages supported)
 
 
 NOTE: This plugin requires the WooCommerce Extension.
 
+[GET PRO VERSION] (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
+
+
 == Installation ==
 
 1. Upload the entire *woocommerce-terrytsang-fbsharelike* folder to the */wp-content/plugins/* directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. A new menu link appeared under WooCommerce sidebar panel, you can click that to update options.
+3. A new menu link 'FbShareLike Setting' appeared under WooCommerce sidebar panel, you can click that to update options.
 4. That's it. You're ready to go and cheers!
 
 == Screenshots ==
@@ -80,6 +84,11 @@ You can check the option 'Show only like button' at 'FbShareLike Settings' secti
 You can select 'Dark' at 'Color Scheme' option under 'FbShareLike Settings' section.
 
 
+= If i only want to change font for the button text. =
+
+You can select custom font at 'Font' option under 'FbShareLike Settings' section.
+
+
 = If i only want to show different language for the button text? =
 
 You can select at 'Language Settings' option under 'FbShareLike Settings' section. (77 Languages Supported Now)
@@ -90,6 +99,11 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.7 =
+
+* Updated : updated "overflow: visible;" css for social-button-container 
+* NEW : add custom font option for the setting page
 
 = 2.0.6 =
 

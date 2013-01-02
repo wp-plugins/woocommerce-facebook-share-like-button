@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.6
+Version: 2.0.7
 Author: Terry Tsang
 Author URI: http://terrytsang.com
 */
@@ -40,6 +40,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		var $language;
 		var $like_verbs;
 		var $color_schemes;
+		var $fonts;
 		var $get_pro_image;
 		
 		function __construct()
@@ -51,6 +52,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$this->like_verbs = array('like' => 'Like', 'recommend' => 'Recommend');
 			$this->color_schemes = array('default' => 'Default', 'dark' => 'Dark');
 			$this->button_aligns = array('left' => 'Left', 'right' => 'Right');
+			$this->fonts = array('default' => 'Default', 'arial' => 'Arial', 'lucida grande' => 'Lucida Grande', 'segoe ui' => 'Segeo UI', 'tahoma' => 'Tahoma', 'trebuchet ms' => 'Trebuchet MS', 'verdana' => 'Verdana');
 			
 			$this->includes();
 			
@@ -179,10 +181,12 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$option_like_verb 		= $this->options['custom_like_verb'];
 			$option_color_scheme 	= $this->options['custom_color_scheme'];
 			$option_button_align 	= $this->options['custom_button_align'];
+			$option_font 			= $this->options['custom_font'];
 			
 			$data_send_option 		= true;
 			$like_verb_default 		= '';
 			$color_scheme_default	= '';
+			$font_default			= '';
 			$button_align_default	= 'left';
 			
 			if( $option_show_only_like == 'yes' )
@@ -199,11 +203,14 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			if( $option_button_align == 'right' )
 				$button_align_default = 'right';
+			
+			if( $option_font != '' )
+				$font_default = ' data-font="'.$option_font.'"';
 				
 			if( $enabled_option == 'yes' ):
 			?>
 				<div class="social-button-container" style="display:block;float:<?php echo $button_align_default; ?>;">
-					<div class="social-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?>></div></div>
+					<div class="social-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?><?php echo $font_default; ?>></div></div>
 				</div>
 			<?php
 			endif;
@@ -260,6 +267,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				$this->options['custom_color_scheme'] = ! isset( $_POST['custom_color_scheme'] ) ? 'default' : $_POST['custom_color_scheme'];
 				$this->options['custom_language_code'] = ! isset( $_POST['custom_language_code'] ) ? 'en_GB' : $_POST['custom_language_code'];
 				$this->options['custom_button_align'] = ! isset( $_POST['custom_button_align'] ) ? 'left' : $_POST['custom_button_align'];
+				$this->options['custom_font'] = ! isset( $_POST['custom_font'] ) ? '' : $_POST['custom_font'];
 				
 				update_option( $this->key, $this->options );
 				
@@ -275,6 +283,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$custom_color_scheme 		= $this->options['custom_color_scheme'];
 			$custom_language_code 		= $this->options['custom_language_code'];
 			$custom_button_align 		= $this->options['custom_button_align'];
+			$custom_font				= $this->options['custom_font'];
 			
 			if ( ! $custom_facebook_app_id ) 
 				$custom_facebook_app_id = '216944597824';
@@ -377,6 +386,20 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 									</td>
 								</tr>
 								<tr>
+									<td>Font</td>
+									<td>
+										<select name="custom_font">
+										<?php foreach($this->fonts as $font_option => $font_name): ?>
+											<?php if($font_option == $custom_font): ?>
+												<option selected="selected" value="<?php echo $font_option; ?>"><?php echo $font_name; ?></option>
+											<?php else: ?>
+												<option value="<?php echo $font_option; ?>"><?php echo $font_name; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</select>
+									</td>
+								</tr>
+								<tr>
 									<td>Language Setting</td>
 									<td>
 										<select name="custom_language_code">
@@ -421,6 +444,11 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 					<ul style="list-style:dash">If you find this plugin helpful, you can:	
 						<li>- Write and review about it in your blog</li>
 						<li>- Rate it on <a href="http://wordpress.org/extend/plugins/woocommerce-facebook-share-like-button/" target="_blank">wordpress plugin page</a></li>
+						<li>- Share on your social media<br />
+						<a href="http://www.facebook.com/sharer.php?u=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;t=WooCommerce Facebook Share Like Button" title="Share this WooCommerce Facebook Share Like Button plugin on Facebook" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_facebook.png" alt="Share this WooCommerce Facebook Share Like Button plugin on Facebook"></a> 
+						<a href="http://twitthis.com/twit?url=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/" title="Tweet about WooCommerce Facebook Share Like Button plugin" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_twitter.png" alt="Tweet about WooCommerce Facebook Share Like Button plugin"></a>
+						<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;title=WooCommerce Facebook Share Like Button plugin" title="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_linkedin.png" alt="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn"></a>
+						</li>
 						<li>- Or make a donation</li>
 					</ul>
 					
