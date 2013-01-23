@@ -5,7 +5,7 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce
 Requires at least: 2.7
-Tested up to: 3.5.0
+Tested up to: 3.5
 Stable tag: 2.0.9
 Version: 2.0.9
 License: GPLv2 or later
@@ -31,11 +31,13 @@ The list of options for the section above:
 *   Choose 'Font' - default or custom font (Arial, Lucida Grande, Segeo UI, Tahoma, Trebuchet MS, Verdana)
 *   Select 'Language Setting' for the language for button. (77 languages supported)
 
+NOTE: This plugin requires the WooCommerce Extension.
+
 [GET PRO VERSION] (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
 
 [WOOCOMMERCE FACEBOOK SOCIAL PLUGINS] (http://terrytsang.com/shop/shop/woocommerce-facebook-social-plugins/)
 
-NOTE: This plugin requires the WooCommerce Extension.
+
 
 
 == Installation ==
