@@ -3,11 +3,11 @@ Contributors: terrytsang
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=terry@terrytsang.com&item_name=Donation+for+TerryTsang+Wordpress+WebDev
 Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
-Tags: woocommerce, facebook, e-commerce
+Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
-Tested up to: 3.5
-Stable tag: 2.0.9
-Version: 2.0.9
+Tested up to: 3.5.1
+Stable tag: 2.0.10
+Version: 2.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,10 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.10 =
+
+* Updated CSS for facebook like and send button box that was cropped
 
 = 2.0.9 =
 

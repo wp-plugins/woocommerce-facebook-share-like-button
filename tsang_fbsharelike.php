@@ -4,9 +4,9 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.9
+Version: 2.0.10
 Author: Terry Tsang
-Author URI: http://terrytsang.com
+Author URI: http://shop.terrytsang.com
 */
 
 /*  Copyright 2012 Terry Tsang (email: terrytsang811@gmail.com)
@@ -444,7 +444,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 					
 					<h3>Get More Extensions</h3>
 					
-					<p>Vist <a href="http://www.terrytsang.com/shop" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your ecommerce platform.</p>
+					<p>Vist <a href="http://shop.terrytsang.com" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your ecommerce platform.</p>
 					
 					<h3>Spreading the Word</h3>
 
@@ -453,7 +453,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 						<li>- Rate it on <a href="http://wordpress.org/extend/plugins/woocommerce-facebook-share-like-button/" target="_blank">wordpress plugin page</a></li>
 						<li>- Share on your social media<br />
 						<a href="http://www.facebook.com/sharer.php?u=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;t=WooCommerce Facebook Share Like Button" title="Share this WooCommerce Facebook Share Like Button plugin on Facebook" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_facebook.png" alt="Share this WooCommerce Facebook Share Like Button plugin on Facebook"></a> 
-						<a href="http://twitthis.com/twit?url=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/" title="Tweet about WooCommerce Facebook Share Like Button plugin" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_twitter.png" alt="Tweet about WooCommerce Facebook Share Like Button plugin"></a>
+						<a href="https://twitter.com/share?url=https%3A%2F%2Fterrytsang.com%2Fshop%2Fshop%2Fwoocommerce-facebook-share-like-button%2F" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_twitter.png" alt="Tweet about WooCommerce Facebook Share Like Button plugin"></a>
 						<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;title=WooCommerce Facebook Share Like Button plugin" title="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_linkedin.png" alt="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn"></a>
 						</li>
 						<li>- Or make a donation</li>
