@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
 Tested up to: 3.5.1
-Stable tag: 2.0.10
-Version: 2.0.10
+Stable tag: 2.0.11
+Version: 2.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,10 +34,7 @@ The list of options for the section above:
 NOTE: This plugin requires the WooCommerce Extension.
 
 [GET PRO VERSION] (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
-
-[WOOCOMMERCE FACEBOOK SOCIAL PLUGINS] (http://terrytsang.com/shop/shop/woocommerce-facebook-social-plugins/)
-
-
+[VIEW MORE PLUGINS] (http://shop.terrytsang.com)
 
 
 == Installation ==
@@ -102,6 +99,10 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 coming soon...
 
 == Changelog ==
+
+= 2.0.11 =
+
+* Fixed bugs
 
 = 2.0.10 =
 

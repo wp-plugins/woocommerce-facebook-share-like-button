@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.10
+Version: 2.0.11
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */

@@ -8,6 +8,14 @@
     height: 25px;
 }
 
-iframe.fb_ltr {
-    width: 360px !important;
+.fb-like { z-index: 9999; }
+
+.fbpdl { 
+	z-index: 9999 !important; width:300px;
+	overflow: visible;
 }
+
+.fb-like span { 
+	z-index: 9999 !important; width:300px !important;
+	overflow: visible;
+} 
