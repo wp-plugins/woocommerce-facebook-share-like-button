@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
 Tested up to: 3.5.1
-Stable tag: 2.0.11
-Version: 2.0.11
+Stable tag: 2.1.0
+Version: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,11 +16,13 @@ A WooCommerce plugin that implements facebook share and like button on product p
 == Description ==
 
 This is a WooCommerce plugin that implements facebook share and like button on the product page with flexible options. After you activated the plugin, the default option is 'Enabled' for all the existing products.
+You can use shortcode '[fbsharelike]' or function call 'fbsharelike()' to output the button.
 
 Under WooCommerce sidebar panel, there will be a new child menu link called 'FBShareLike Settings' section.
 
 The list of options for the section above:
 
+*   Enable the plugin
 *   Replace default app id value with yours one, or else just leave it
 *   Set width
 *   Choose 'Button Alignment' - default(left) or right
@@ -94,11 +96,21 @@ You can select custom font at 'Font' option under 'FbShareLike Settings' section
 You can select at 'Language Settings' option under 'FbShareLike Settings' section. (77 Languages Supported Now)
 
 
+= If i want to use the button on sidebar widget or in my php file? =
+
+You can use shortcode [fbsharelike] in widget or function 'fbsharelike()'
+
+
 == Upgrade Notice ==
 
 coming soon...
 
 == Changelog ==
+
+= 2.1.0 =
+
+* Add shortcode [fbsharelike] and function call <?php fbsharelike(); ?>
+* Update css
 
 = 2.0.11 =
 

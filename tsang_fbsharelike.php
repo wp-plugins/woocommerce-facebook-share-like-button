@@ -3,8 +3,8 @@
 /*
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
-Description: Add a Facebook Like and Share button to your product pages
-Version: 2.0.11
+Description: Add a Facebook Like and Send button to product pages, widgets and functions
+Version: 2.1.0
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */
@@ -86,6 +86,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			//Add image_src link for facebook thumbnail generation
 			add_action( 'wp_head', array( &$this, 'add_head_imagesrc' ) );
+			
+			add_shortcode( 'fbsharelike', array( $this, 'tsang_fbsharelike_button') );
+			add_filter( 'widget_text', 'do_shortcode' );
 		}
 		
 		function includes()
@@ -183,8 +186,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			endif;
 			
 			$this->options = $this->get_options();
-			$option_show_only_like = $this->options['custom_show_only_like'];
-			$option_facebook_width = $this->options['custom_facebook_width'];
+			$option_fbsharelike_enabled 	= $this->options['custom_fbsharelike_enabled'];
+			$option_show_only_like	= $this->options['custom_show_only_like'];
+			$option_facebook_width 	= $this->options['custom_facebook_width'];
 			$option_like_verb 		= $this->options['custom_like_verb'];
 			$option_color_scheme 	= $this->options['custom_color_scheme'];
 			$option_button_align 	= $this->options['custom_button_align'];
@@ -214,10 +218,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			if( $option_font != '' )
 				$font_default = ' data-font="'.$option_font.'"';
 				
-			if( $enabled_option == 'yes' ):
+			if( $option_fbsharelike_enabled ):
 			?>
-				<div class="social-button-container" style="display:block;float:<?php echo $button_align_default; ?>;">
-					<div class="social-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?><?php echo $font_default; ?>></div></div>
+				<div class="facebook-button-container" style="display:block;float:<?php echo $button_align_default; ?>;">
+					<div class="facebook-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?><?php echo $font_default; ?>></div></div>
 				</div>
 			<?php
 			endif;
@@ -266,6 +270,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			{			
 				check_admin_referer( 'facebook-sharelike' );
 				
+				$this->options['custom_fbsharelike_enabled'] = ! isset( $_POST['custom_fbsharelike_enabled'] ) ? '' : $_POST['custom_fbsharelike_enabled'];
 				$this->options['custom_facebook_app_id'] = ! isset( $_POST['custom_facebook_app_id'] ) ? '216944597824' : $_POST['custom_facebook_app_id'];
 				$this->options['custom_facebook_width'] = ! isset( $_POST['custom_facebook_width'] ) ? '450' : $_POST['custom_facebook_width'];
 				$this->options['custom_show_after_title'] = ! isset( $_POST['custom_show_after_title'] ) ? '' : $_POST['custom_show_after_title'];
@@ -282,6 +287,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				echo '<div id="message" class="updated fade"><p>' . __( 'Facebook ShareLike options saved.', 'facebook-sharelike' ) . '</p></div>';
 			} 
 			
+			$custom_fbsharelike_enabled = $this->option['custom_fbsharelike_enabled'];
 			$custom_facebook_app_id	 	= $this->options['custom_facebook_app_id'];
 			$custom_facebook_width 		= $this->options['custom_facebook_width'];
 			$custom_show_after_title 	= $this->options['custom_show_after_title'];
@@ -302,6 +308,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$checked_value2 = '';
 			if($custom_show_only_like == 'yes')
 				$checked_value2 = 'checked="checked"';
+			
+			$checked_value3 = '';
+			if($custom_fbsharelike_enabled == 'yes')
+				$checked_value3 = 'checked="checked"';
 				
 			if($custom_facebook_width == '')
 				$custom_facebook_width = '450';
@@ -334,6 +344,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 								<th>Setting</th>
 							</thead>
 							<tbody>
+								<tr>
+									<td>Enabled</td>
+									<td><input class="checkbox" name="custom_fbsharelike_enabled" id="custom_fbsharelike_enabled" value="yes" <?php echo $checked_value3; ?> type="checkbox"></td>
+								</tr>
 								<tr>
 									<td>Your Facebook App ID<br /><span style="color:#ccc;">(leave it as default value if you do not have any facebook application id)</span></td>
 									<td><input id="custom_facebook_app_id" name="custom_facebook_app_id" value="<?php echo $custom_facebook_app_id; ?>" size="20"/></td>
@@ -500,5 +514,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 
 // finally instantiate the plugin class
 $TSANG_WooCommerce_FbShareLike_Button = &new TSANG_WooCommerce_FbShareLike_Button();
+
+function fbsharelike() {
+	$woo_fbsharelike = new TSANG_WooCommerce_FbShareLike_Button();
+	add_action('init', $woo_fbsharelike->tsang_fbsharelike_button());
+}
 
 ?>
