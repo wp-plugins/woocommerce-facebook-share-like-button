@@ -287,7 +287,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				echo '<div id="message" class="updated fade"><p>' . __( 'Facebook ShareLike options saved.', 'facebook-sharelike' ) . '</p></div>';
 			} 
 			
-			$custom_fbsharelike_enabled = $this->option['custom_fbsharelike_enabled'];
+			$custom_fbsharelike_enabled = $this->options['custom_fbsharelike_enabled'];
 			$custom_facebook_app_id	 	= $this->options['custom_facebook_app_id'];
 			$custom_facebook_width 		= $this->options['custom_facebook_width'];
 			$custom_show_after_title 	= $this->options['custom_show_after_title'];
