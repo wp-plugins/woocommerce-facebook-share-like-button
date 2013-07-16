@@ -35,8 +35,12 @@ The list of options for the section above:
 
 NOTE: This plugin requires the WooCommerce Extension.
 
-[GET PRO VERSION] (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
-[VIEW MORE PLUGINS] (http://shop.terrytsang.com)
+= GET PRO VERSION =
+WooCommerce Social Buttons PRO (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
+
+= Additional Plugins by Terry Tsang =
+*   [WooCommerce Custom Checkout Options] (http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/)
+*   [WooCommerce Direct Checkout] (http://terrytsang.com/shop/shop/woocommerce-direct-checkout/)
 
 
 == Installation ==
