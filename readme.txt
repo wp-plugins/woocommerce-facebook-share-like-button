@@ -40,7 +40,7 @@ WooCommerce Social Buttons PRO (http://terrytsang.com/shop/shop/woocommerce-soci
 
 = Additional Plugins by Terry Tsang =
 *   [WooCommerce Custom Checkout Options] (http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/)
-*   [WooCommerce Direct Checkout] (http://terrytsang.com/shop/shop/woocommerce-direct-checkout/)
+*   [WooCommerce Direct Checkout] (http://wordpress.org/plugins/woocommerce-direct-checkout/)
 
 
 == Installation ==
