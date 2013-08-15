@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Send button to product pages, widgets and functions
-Version: 2.1.1
+Version: 2.1.2
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */
@@ -107,9 +107,11 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		function add_head_imagesrc()
 		{
 		global $post;
-
+		
+		$this->options = $this->get_options();
+		$option_turn_off_open_graph = $this->options['custom_turn_off_open_graph'];
 		?>
-			<?php if (is_single()) { ?>  
+			<?php if (is_single() && $option_turn_off_open_graph != 'yes') { ?>  
 			<meta property="og:url" content="<?php the_permalink() ?>"/>  
 			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
 			<meta property="og:description" content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>" />  
@@ -188,6 +190,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$this->options = $this->get_options();
 			$option_fbsharelike_enabled 	= $this->options['custom_fbsharelike_enabled'];
 			$option_show_only_like	= $this->options['custom_show_only_like'];
+			$option_turn_off_open_graph	= $this->options['custom_turn_off_open_graph'];
 			$option_facebook_width 	= $this->options['custom_facebook_width'];
 			$option_like_verb 		= $this->options['custom_like_verb'];
 			$option_color_scheme 	= $this->options['custom_color_scheme'];
@@ -195,6 +198,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$option_font 			= $this->options['custom_font'];
 			
 			$data_send_option 		= true;
+			$data_open_graph 		= true;
 			$like_verb_default 		= '';
 			$color_scheme_default	= '';
 			$font_default			= '';
@@ -202,6 +206,9 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			if( $option_show_only_like == 'yes' )
 				$data_send_option = false;
+			
+			if( $option_turn_off_open_graph == 'yes' )
+				$data_open_graph = false;
 			
 			if( $option_facebook_width == '' )
 				$option_facebook_width = '450';
@@ -221,7 +228,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			if( $option_fbsharelike_enabled ):
 			?>
 				<div class="facebook-button-container" style="display:block;float:<?php echo $button_align_default; ?>;">
-					<div class="facebook-button"><div class="fb-like" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?><?php echo $font_default; ?>></div></div>
+					<div class="facebook-button"><div class="fb-like" data-href="<?php the_permalink() ?>" data-send="<?php echo $data_send_option; ?>" data-layout="button_count" data-width="<?php echo $option_facebook_width; ?>" data-show-faces="false"<?php echo $like_verb_default; ?><?php echo $color_scheme_default; ?><?php echo $font_default; ?>></div></div>
 				</div>
 			<?php
 			endif;
@@ -275,6 +282,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 				$this->options['custom_facebook_width'] = ! isset( $_POST['custom_facebook_width'] ) ? '450' : $_POST['custom_facebook_width'];
 				$this->options['custom_show_after_title'] = ! isset( $_POST['custom_show_after_title'] ) ? '' : $_POST['custom_show_after_title'];
 				$this->options['custom_show_only_like'] = ! isset( $_POST['custom_show_only_like'] ) ? '' : $_POST['custom_show_only_like'];
+				$this->options['custom_turn_off_open_graph'] = ! isset( $_POST['custom_turn_off_open_graph'] ) ? '' : $_POST['custom_turn_off_open_graph'];
 				$this->options['custom_like_verb'] = ! isset( $_POST['custom_like_verb'] ) ? 'like' : $_POST['custom_like_verb'];
 				$this->options['custom_color_scheme'] = ! isset( $_POST['custom_color_scheme'] ) ? 'default' : $_POST['custom_color_scheme'];
 				$this->options['custom_language_code'] = ! isset( $_POST['custom_language_code'] ) ? 'en_GB' : $_POST['custom_language_code'];
@@ -292,6 +300,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$custom_facebook_width 		= $this->options['custom_facebook_width'];
 			$custom_show_after_title 	= $this->options['custom_show_after_title'];
 			$custom_show_only_like 		= $this->options['custom_show_only_like'];
+			$custom_turn_off_open_graph = $this->options['custom_turn_off_open_graph'];
 			$custom_like_verb 			= $this->options['custom_like_verb'];
 			$custom_color_scheme 		= $this->options['custom_color_scheme'];
 			$custom_language_code 		= $this->options['custom_language_code'];
@@ -312,6 +321,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$checked_value3 = '';
 			if($custom_fbsharelike_enabled == 'yes')
 				$checked_value3 = 'checked="checked"';
+			
+			$checked_value4 = '';
+			if($custom_turn_off_open_graph == 'yes')
+				$checked_value4 = 'checked="checked"';
 				
 			if($custom_facebook_width == '')
 				$custom_facebook_width = '450';
@@ -377,6 +390,10 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 								<tr>
 									<td>Show Like button only</td>
 									<td><input class="checkbox" name="custom_show_only_like" id="custom_show_only_like" value="yes" <?php echo $checked_value2; ?> type="checkbox"></td>
+								</tr>
+								<tr>
+									<td>Turn off open graph meta values</td>
+									<td><input class="checkbox" name="custom_turn_off_open_graph" id="custom_turn_off_open_graph" value="yes" <?php echo $checked_value4; ?> type="checkbox"></td>
 								</tr>
 								<tr>
 									<td>Verb to display</td>
@@ -492,6 +509,7 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			$options = array(
 				'custom_facebook_app_id' => '216944597824',
 				'custom_show_after_title' => '',
+				'custom_turn_off_open_graph' => '',
 			);
 			$saved = get_option( $this->key );
 			

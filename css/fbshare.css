@@ -1,22 +1,23 @@
 .facebook-button-container {
 	overflow: visible;
-	width: 100%;
-	height: 25px;
+   	width: 27%;
+	height: 25px; 
+	clear:both;
 }
 
 .facebook-button {
-    width: 100%;
+    width: 300px;
     height: 25px;
 }
 
-.fb-like { z-index: 9999; }
+.fb-like { z-index: 99999; }
 
-.fbpdl { 
-	z-index: 9999 !important;
-	overflow: visible;
+.fbpdl {
+    z-index: 99999 !important; width:300px;
+    overflow: visible;
 }
 
-.fb-like span { 
-	z-index: 9999 !important;
-	overflow: visible;
-} 
+.fb-like span {
+    z-index: 99999 !important; width:500px !important;
+    overflow: visible;
+}
