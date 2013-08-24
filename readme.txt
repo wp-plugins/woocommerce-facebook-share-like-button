@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
 Tested up to: 3.5.2
-Stable tag: 2.1.2
-Version: 2.1.2
+Stable tag: 2.1.3
+Version: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,10 @@ You can use shortcode [fbsharelike] in widget or function 'fbsharelike()'
 coming soon...
 
 == Changelog ==
+
+= 2.1.3 =
+
+* Updated CSS
 
 = 2.1.2 =
 
