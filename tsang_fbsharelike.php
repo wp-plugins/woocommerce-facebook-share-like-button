@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Send button to product pages, widgets and functions
-Version: 2.1.3
+Version: 2.1.4
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */
@@ -114,16 +114,18 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			<?php if (is_single() && $option_turn_off_open_graph != 'yes') { ?>  
 			<meta property="og:url" content="<?php the_permalink() ?>"/>  
 			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
-			<meta property="og:description" content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>" />  
+			<meta property="og:description" content="<?php echo esc_attr(strip_tags(get_the_excerpt($post->ID))); ?>" />  
 			<meta property="og:type" content="product" />  
+			<meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>" />
+			<link rel="image_src" href="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>" />
 			<?php 
-				if (function_exists('wp_get_attachment_thumb_url')) 
+				/*if (function_exists('wp_get_attachment_thumb_url')) 
 				{
 					if(wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)) != "") { ?>
 					<meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>" />  
 					<link rel="image_src" href="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>" />
 					<?php }
-				} 
+				}*/
 			} 
 			?> 
 		<?php

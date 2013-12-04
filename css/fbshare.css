@@ -8,16 +8,17 @@
 .facebook-button {
     width: 300px;
     height: 25px;
+    overflow: visible;
 }
 
-.fb-like { z-index: 9999; }
+.fb-like { z-index: 99999; overflow: visible; }
 
 .fbpdl {
-    z-index: 9999 !important; width:300px;
+    z-index: 99999 !important; width:300px;
     overflow: visible;
 }
 
 .fb-like span {
-    z-index: 9999 !important; width:500px !important;
+    z-index: 99999 !important; width:500px !important;
     overflow: visible;
 }
