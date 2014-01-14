@@ -5,9 +5,9 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
-Tested up to: 3.7.1
-Stable tag: 2.1.4
-Version: 2.1.4
+Tested up to: 3.8
+Stable tag: 2.1.5
+Version: 2.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,11 @@ You can use shortcode [fbsharelike] in widget or function 'fbsharelike()'
 coming soon...
 
 == Changelog ==
+
+= 2.1.5 =
+
+* Updated CSS to fix facebook like popup box cropped issue
+* Remove z-index and old facebook css styling
 
 = 2.1.3 =
 
