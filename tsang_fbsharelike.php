@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Send button to product pages, widgets and functions
-Version: 2.1.6
+Version: 2.1.7
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */
@@ -261,15 +261,25 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 			
 			if ( ! $option_language_code )
 				$option_language_code = 'en_GB';
+			
+			
+			echo '<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/'.$option_language_code.'/sdk.js#xfbml=1&appId='.$custom_facebook_app_id.'&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, \'script\', \'facebook-jssdk\'));</script>';
 				
-			echo '<div id="fb-root"></div> 
-        	<script>(function(d, s, id) { 
-	            var js, fjs = d.getElementsByTagName(s)[0]; 
-	            if (d.getElementById(id)) return; 
-	            js = d.createElement(s); js.id = id; 
-	            js.src = "//connect.facebook.net/'.$option_language_code.'/all.js#xfbml=1&appId='.$custom_facebook_app_id.'"; 
-	            fjs.parentNode.insertBefore(js, fjs); 
-        	}(document, \'script\', \'facebook-jssdk\'));</script>';
+// 			echo '<div id="fb-root"></div> 
+//         	<script>(function(d, s, id) { 
+// 	            var js, fjs = d.getElementsByTagName(s)[0]; 
+// 	            if (d.getElementById(id)) return; 
+// 	            js = d.createElement(s); js.id = id; 
+// 	            js.src = "//connect.facebook.net/'.$option_language_code.'/all.js#xfbml=1&appId='.$custom_facebook_app_id.'"; 
+// 	            fjs.parentNode.insertBefore(js, fjs); 
+//         	}(document, \'script\', \'facebook-jssdk\'));</script>';
 		}
 		
 		function options_page() 
@@ -508,10 +518,19 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		
 		// Handle our options
 		function get_options() {
+			
 			$options = array(
+				'custom_fbsharelike_enabled' => '',
 				'custom_facebook_app_id' => '216944597824',
+				'custom_facebook_width' => '',
 				'custom_show_after_title' => '',
+				'custom_show_only_like' => '',
 				'custom_turn_off_open_graph' => '',
+				'custom_like_verb' => '',
+				'custom_color_scheme' => '',
+				'custom_language_code' => '',
+				'custom_button_align' => '',
+				'custom_font' => ''
 			);
 			$saved = get_option( $this->key );
 			
