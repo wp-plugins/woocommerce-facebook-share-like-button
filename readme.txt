@@ -5,9 +5,9 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
-Tested up to: 3.9.1
-Stable tag: 2.1.7
-Version: 2.1.7
+Tested up to: 3.8.1
+Stable tag: 2.1.8
+Version: 2.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,26 +23,26 @@ Under WooCommerce sidebar panel, there will be a new child menu link called 'FBS
 The list of options for the section above:
 
 *   Enable the plugin
+*   Show in blog post/page (NEW FEATURE)
 *   Replace default app id value with yours one, or else just leave it
 *   Set width
 *   Choose 'Button Alignment' - default(left) or right
 *   Enable "Show button below product title" option
 *   Enable 'Show Like button only' option
-*   Enable 'Turn off Open Graph meta values' option - NEW
+*   Enable 'Turn off Open Graph meta values' option
 *   Choose 'Verb to display' for LIKE button - default(like) or recommend
 *   Choose 'Color Scheme' - default(light) or dark button
 *   Choose 'Font' - default or custom font (Arial, Lucida Grande, Segeo UI, Tahoma, Trebuchet MS, Verdana)
 *   Select 'Language Setting' for the language for button. (77 languages supported)
 
-NOTE: This plugin requires the WooCommerce Extension.
 
 = GET PRO VERSION =
-WooCommerce Social Buttons PRO (http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
+*   [WooCommerce Social Buttons PRO](http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
 
-= Additional Plugins by Terry Tsang =
-*   [WooCommerce Custom Checkout Options] (http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/)
-*   [WooCommerce Direct Checkout] (http://wordpress.org/plugins/woocommerce-direct-checkout/)
-
+= Popular Plugins by Terry Tsang =
+*   [WooCommerce Custom Checkout Options](http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/)
+*   [WooCommerce Direct Checkout](http://wordpress.org/plugins/woocommerce-direct-checkout/)
+*   [WooCommerce Extra Fee Option PRO](http://terrytsang.com/shop/shop/woocommerce-extra-fee-option-pro/)
 
 == Installation ==
 
@@ -110,12 +110,20 @@ You can select at 'Language Settings' option under 'FbShareLike Settings' sectio
 
 You can use shortcode [fbsharelike] in widget or function 'fbsharelike()'
 
+= If i want to show buttons in blog post/page? =
+
+You need to check option "Show in blog post/page"
+
 
 == Upgrade Notice ==
 
 coming soon...
 
 == Changelog ==
+
+= 2.1.8 =
+
+* Added "Show in blog post/page" option
 
 = 2.1.7 =
 
