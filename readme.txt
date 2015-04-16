@@ -41,19 +41,20 @@ Please feel free to visit my [online shop](http://shop.terrytsang.com) where you
 = GET PRO VERSION ( 9 Social Share Buttons ) =
 *   [WooCommerce Social Buttons PRO](http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
 
-= In addition to these features, over 20 WooCommerce extensions are available at my website: =
+= In addition to these features, over 20 WooCommerce extensions are available: =
 
 * [Custom Checkout Options](http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/) - implement customization for entire checkout process.
-* [Direct Checkout](http://terrytsang.com/shop/shop/woocommerce-direct-checkout/) - skip shopping cart page and implement add to cart button redirect to checkout page. This can lead to an immediate increase in sales.
-* [Extra Fee Option](http://terrytsang.com/shop/shop/woocommerce-extra-fee-option/) - add multiple extra fee for any order with flexible options.
+* [Direct Checkout](http://terrytsang.com/shop/shop/woocommerce-direct-checkout/) - skip shopping cart page and implement add to cart button redirect to checkout page.
+* [Extra Fee Option](http://terrytsang.com/shop/shop/woocommerce-extra-fee-option/) - add multiple extra fee for any order with multiple options.
 * [Custom Product Tabs](http://terrytsang.com/shop/shop/woocommerce-custom-product-tabs/) - add multiple tabs to WooCommerce product page.
-* [Facebook Social Plugins](http://terrytsang.com/shop/shop/woocommerce-facebook-social-plugins/) - implement Facebook Social Plugins that let the users liked, commented or shared your site's contents with their friends and family.
-* [Custom Payment Method](http://terrytsang.com/shop/shop/woocommerce-custom-payment-method/) - Customise the custom payment method with flexible options for your store.
-* [Custom Shipping Method](http://terrytsang.com/shop/shop/woocommerce-custom-shipping-method/) - allow user to define own settings for custom shipping method.
-* [Donation/Tip Checkout](http://terrytsang.com/shop/shop/woocommerce-donation-tip-checkout/) -  allow user to add donation/tip amount option for their customers at WooCommerce checkout page.
-* [Product Badge](http://terrytsang.com/shop/shop/woocommerce-product-badge/)-add mulitple badges to the products.
-* [Facebook Connect Checkout](http://terrytsang.com/shop/shop/woocommerce-facebook-login-checkout/)-implement Facebook Login so that new customers can sign in woocommerce site by using their Facebook account.
-* [Product Catalog](http://terrytsang.com/shop/shop/woocommerce-product-catalog/) -  turn WooCommerce into a product catalog with a few clicks.
+* [Facebook Social Plugins](http://terrytsang.com/shop/shop/woocommerce-facebook-social-plugins/) - implement Facebook Social Plugins that let the users liked, commented or shared your site's contents.
+* [Custom Payment Method](http://terrytsang.com/shop/shop/woocommerce-custom-payment-method/) - customise the custom payment method with flexible options.
+* [Custom Shipping Method](http://terrytsang.com/shop/shop/woocommerce-custom-shipping-method/) - define own settings for custom shipping method.
+* [Donation/Tip Checkout](http://terrytsang.com/shop/shop/woocommerce-donation-tip-checkout/) - add donation/tip amount option for their customers at WooCommerce checkout page.
+* [Product Badge](http://terrytsang.com/shop/shop/woocommerce-product-badge/) - add mulitple badges to the products.
+* [Facebook Connect Checkout](http://terrytsang.com/shop/shop/woocommerce-facebook-login-checkout/) - implement Facebook Login so that new customers can sign in woocommerce site by using their Facebook account.
+* [Product Catalog](http://terrytsang.com/shop/shop/woocommerce-product-catalog/) - turn WooCommerce into a product catalog with a few clicks.
+
 and many more...
 
 == Installation ==
