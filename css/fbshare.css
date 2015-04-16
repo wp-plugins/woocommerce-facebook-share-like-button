@@ -14,3 +14,7 @@ embed, iframe, object
 {
     max-width: 635% !important;
 }
+
+.fb_iframe_widget iframe {
+	z-index: 1000;
+}

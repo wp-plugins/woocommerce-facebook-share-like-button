@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
 Tested up to: 4.0
-Stable tag: 2.1.9
-Version: 2.1.9
+Stable tag: 2.2.0
+Version: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,18 +35,30 @@ The list of options for the section above:
 *   Choose 'Font' - default or custom font (Arial, Lucida Grande, Segeo UI, Tahoma, Trebuchet MS, Verdana)
 *   Select 'Language Setting' for the language for button. (77 languages supported)
 
+= Demo Site =
+Please feel free to visit my [online shop](http://shop.terrytsang.com) where you can test the features of WordPress and all of my extensions. http://shop.terrytsang.com
 
-= GET PRO VERSION =
+= GET PRO VERSION ( 9 Social Share Buttons ) =
 *   [WooCommerce Social Buttons PRO](http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
 
-= Popular Plugins by Terry Tsang =
-*   [WooCommerce Custom Checkout Options](http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/)
-*   [WooCommerce Direct Checkout](http://wordpress.org/plugins/woocommerce-direct-checkout/)
-*   [WooCommerce Extra Fee Option PRO](http://terrytsang.com/shop/shop/woocommerce-extra-fee-option-pro/)
+= In addition to these features, over 20 WooCommerce extensions are available at my website: =
+
+* [Custom Checkout Options](http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/) - implement customization for entire checkout process.
+* [Direct Checkout](http://terrytsang.com/shop/shop/woocommerce-direct-checkout/) - skip shopping cart page and implement add to cart button redirect to checkout page. This can lead to an immediate increase in sales.
+* [Extra Fee Option](http://terrytsang.com/shop/shop/woocommerce-extra-fee-option/) - add multiple extra fee for any order with flexible options.
+* [Custom Product Tabs](http://terrytsang.com/shop/shop/woocommerce-custom-product-tabs/) - add multiple tabs to WooCommerce product page.
+* [Facebook Social Plugins](http://terrytsang.com/shop/shop/woocommerce-facebook-social-plugins/) - implement Facebook Social Plugins that let the users liked, commented or shared your site's contents with their friends and family.
+* [Custom Payment Method](http://terrytsang.com/shop/shop/woocommerce-custom-payment-method/) - Customise the custom payment method with flexible options for your store.
+* [Custom Shipping Method](http://terrytsang.com/shop/shop/woocommerce-custom-shipping-method/) - allow user to define own settings for custom shipping method.
+* [Donation/Tip Checkout](http://terrytsang.com/shop/shop/woocommerce-donation-tip-checkout/) -  allow user to add donation/tip amount option for their customers at WooCommerce checkout page.
+* [Product Badge](http://terrytsang.com/shop/shop/woocommerce-product-badge/)-add mulitple badges to the products.
+* [Facebook Connect Checkout](http://terrytsang.com/shop/shop/woocommerce-facebook-login-checkout/)-implement Facebook Login so that new customers can sign in woocommerce site by using their Facebook account.
+* [Product Catalog](http://terrytsang.com/shop/shop/woocommerce-product-catalog/) -  turn WooCommerce into a product catalog with a few clicks.
+and many more...
 
 == Installation ==
 
-1. Upload the entire *woocommerce-terrytsang-fbsharelike* folder to the */wp-content/plugins/* directory
+1. Upload the entire *woocommerce-facebook-share-like-button* folder to the */wp-content/plugins/* directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. A new menu link 'FbShareLike Setting' appeared under WooCommerce sidebar panel, you can click that to update options.
 4. That's it. You're ready to go and cheers!
@@ -120,6 +132,11 @@ You need to check option "Show in blog post/page"
 coming soon...
 
 == Changelog ==
+
+= 2.2.0 =
+
+* Added z-index for facebook Like popup box
+* Updated og:description content
 
 = 2.1.9 =
 
