@@ -6,8 +6,8 @@ Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-but
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
 Tested up to: 4.2.2
-Stable tag: 2.2.1
-Version: 2.2.1
+Stable tag: 2.2.2
+Version: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -138,6 +138,9 @@ You need to check option "Show in blog post/page"
 coming soon...
 
 == Changelog ==
+
+= 2.2.2 =
+* Added Great Deal Bundles links
 
 = 2.2.1 =
 * Fixed some og meta tags bugs (og:description and og:image)
