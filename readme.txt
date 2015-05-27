@@ -41,7 +41,12 @@ Please feel free to visit my [online shop](http://shop.terrytsang.com) where you
 = GET PRO VERSION ( 9 Social Share Buttons ) =
 *   [WooCommerce Social Buttons PRO](http://terrytsang.com/shop/shop/woocommerce-social-buttons-pro/)
 
-= In addition to these features, over 20 WooCommerce extensions are available: =
+= GREAT DEALS =
+*   [WooCommerce Free Extensions Bundle](http://terrytsang.com/shop/shop/woocommerce-free-extensions-bundle/) - 5 free plugins in 1 download
+*   [WooCommerce Popular Extensions Bundle](http://terrytsang.com/shop/shop/woocommerce-popular-extensions-bundle/) - 5 unlimited licenses premium plugins with only $99
+
+
+= In addition to these features, over 20 free and premium WooCommerce extensions are available: =
 
 * [Custom Checkout Options](http://terrytsang.com/shop/shop/woocommerce-custom-checkout-options/) - implement customization for entire checkout process.
 * [Direct Checkout](http://terrytsang.com/shop/shop/woocommerce-direct-checkout/) - skip shopping cart page and implement add to cart button redirect to checkout page.
