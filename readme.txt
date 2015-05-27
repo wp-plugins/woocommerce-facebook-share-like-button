@@ -5,9 +5,9 @@ Plugin Name: WooCommerce Facebook Share Like Button
 Plugin URI:  http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Tags: woocommerce, facebook, e-commerce, like
 Requires at least: 2.7
-Tested up to: 4.0
-Stable tag: 2.2.0
-Version: 2.2.0
+Tested up to: 4.2.2
+Stable tag: 2.2.1
+Version: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,9 @@ You need to check option "Show in blog post/page"
 coming soon...
 
 == Changelog ==
+
+= 2.2.1 =
+* Fixed some og meta tags bugs (og:description and og:image)
 
 = 2.2.0 =
 

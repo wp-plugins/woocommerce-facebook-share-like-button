@@ -4,12 +4,12 @@
 Plugin Name: WooCommerce Facebook Like Share Button
 Plugin URI: http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/
 Description: Add a Facebook Like and Send button to product pages, widgets and functions
-Version: 2.2.0
+Version: 2.2.1
 Author: Terry Tsang
 Author URI: http://shop.terrytsang.com
 */
 
-/*  Copyright 2012-2014 Terry Tsang (email: terrytsang811@gmail.com)
+/*  Copyright 2012-2015 Terry Tsang (email: terrytsang811@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -116,19 +116,31 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 		$option_turn_off_open_graph = $this->options['custom_turn_off_open_graph'];
 		$post_object = get_post( $post->ID );
 		//$post_content = esc_attr(strip_tags(substr($post_object->post_content, 0, 100)));
-		$post_content = esc_attr(get_the_excerpt());
+		$post_excerpt = get_the_excerpt();
+		if($post_excerpt != '')
+			$post_content = esc_attr($post_excerpt);
+		else 
+			$post_content = esc_attr(strip_tags(substr($post_object->post_content, 0, 100)));
 		?>
-			<?php if (is_single() && $option_turn_off_open_graph != 'yes') { ?>  
-			<meta property="og:url" content="<?php the_permalink() ?>"/>  
-			<meta property="og:title" content="<?php single_post_title(''); ?>" />  
-			<meta property="og:description" content="<?php echo $post_content; ?>" />  
-			<?php if ( is_product() ): ?>
-			<meta property="og:type" content="product" /> 
-			<?php else: ?>
-			<meta property="og:type" content="article" /> 
-			<?php endif; ?> 
-			<meta property="og:image" content="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>" />
-			<?php 
+<?php if (is_single() && $option_turn_off_open_graph != 'yes') { ?>  
+<meta property="og:url" content="<?php the_permalink() ?>"/>  
+<meta property="og:title" content="<?php esc_attr( single_post_title('') ) ?>" />  
+<meta property="og:description" content="<?php echo $post_content; ?>" />  
+<?php if ( is_product() ): ?>
+<meta property="og:type" content="product" /> 
+<?php else: ?>
+<meta property="og:type" content="article" /> 
+<?php endif; ?> 
+<meta property="og:image" content="
+<?php
+ if ( has_post_thumbnail()) {
+   $medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium');
+   echo '<a href="' . $medium_image_url[0] . '" title="' . the_title_attribute('echo=0') . '">';
+   echo get_the_post_thumbnail($post->ID, 'thumbnail');
+   echo '</a>';
+ }
+?>" />
+<?php 
 				/*if (function_exists('wp_get_attachment_thumb_url')) 
 				{
 					if(wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)) != "") { ?>
@@ -521,19 +533,19 @@ if ( ! class_exists( 'TSANG_WooCommerce_FbShareLike_Button' ) ) {
 					
 					<h3>Get More Extensions</h3>
 					
-					<p>Vist <a href="http://shop.terrytsang.com" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your ecommerce platform.</p>
+					<p>Vist <a href="http://shop.terrytsang.com" target="_blank" title="Premium &amp; Free Extensions/Plugins for E-Commerce by Terry Tsang">My Shop</a> to get more free and premium extensions/plugins for your WooCommerce sites.</p>
 					
 					<h3>Spreading the Word</h3>
 
-					<ul style="list-style:dash">If you find this plugin helpful, you can:	
-						<li>- Write and review about it in your blog</li>
-						<li>- Rate it on <a href="http://wordpress.org/extend/plugins/woocommerce-facebook-share-like-button/" target="_blank">wordpress plugin page</a></li>
-						<li>- Share on your social media<br />
+					<ul style="list-style:dash;margin-left:10px;">If you find this plugin helpful, you can:	
+						<li>Write and review about it in your blog</li>
+						<li>Give this plugin 5 star rating on <a href="http://wordpress.org/support/view/plugin-reviews/woocommerce-facebook-share-like-button?filter=5" target="_blank">wordpress plugin page</a></li>
+						<li>Share on your social media<br />
 						<a href="http://www.facebook.com/sharer.php?u=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;t=WooCommerce Facebook Share Like Button" title="Share this WooCommerce Facebook Share Like Button plugin on Facebook" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_facebook.png" alt="Share this WooCommerce Facebook Share Like Button plugin on Facebook"></a> 
 						<a href="https://twitter.com/share?url=https%3A%2F%2Fterrytsang.com%2Fshop%2Fshop%2Fwoocommerce-facebook-share-like-button%2F" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_twitter.png" alt="Tweet about WooCommerce Facebook Share Like Button plugin"></a>
 						<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://terrytsang.com/shop/shop/woocommerce-facebook-share-like-button/&amp;title=WooCommerce Facebook Share Like Button plugin" title="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn" target="_blank"><img src="<?php echo $this->plugin_url; ?>/images/social_linkedin.png" alt="Share this WooCommerce Facebook Share Like Button plugin on LinkedIn"></a>
 						</li>
-						<li>- Or make a donation</li>
+						<li>- Or make a donation to support the development</li>
 					</ul>
 					
 					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LJWSJDBBLNK7W" target="_blank"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="" /></a>
